@@ -1,0 +1,712 @@
+{
+	"info": {
+		"_postman_id": "5f60191b-3b87-44f9-91f5-f453269ea73e",
+		"name": "Laravel Österreichimpft 2021",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all vaccinedates",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://oesterreichimpft.s1810456016.student.kwmhgb.at/api/vaccinedates",
+					"protocol": "https",
+					"host": [
+						"oesterreichimpft",
+						"s1810456016",
+						"student",
+						"kwmhgb",
+						"at"
+					],
+					"path": [
+						"api",
+						"vaccinedates"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all vaccinelocations",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://oesterreichimpft.s1810456016.student.kwmhgb.at/api/vaccinelocations",
+					"protocol": "https",
+					"host": [
+						"oesterreichimpft",
+						"s1810456016",
+						"student",
+						"kwmhgb",
+						"at"
+					],
+					"path": [
+						"api",
+						"vaccinelocations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find vaccination location by Id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://oesterreichimpft.s1810456016.student.kwmhgb.at/api/vaccinelocation/1",
+					"protocol": "https",
+					"host": [
+						"oesterreichimpft",
+						"s1810456016",
+						"student",
+						"kwmhgb",
+						"at"
+					],
+					"path": [
+						"api",
+						"vaccinelocation",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find vaccination date by Id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://oesterreichimpft.s1810456016.student.kwmhgb.at/api/vaccinedate/1",
+					"protocol": "https",
+					"host": [
+						"oesterreichimpft",
+						"s1810456016",
+						"student",
+						"kwmhgb",
+						"at"
+					],
+					"path": [
+						"api",
+						"vaccinedate",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get users by date and location",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://oesterreichimpft.s1810456016.student.kwmhgb.at/api/vaccineuser/7/3",
+					"protocol": "https",
+					"host": [
+						"oesterreichimpft",
+						"s1810456016",
+						"student",
+						"kwmhgb",
+						"at"
+					],
+					"path": [
+						"api",
+						"vaccineuser",
+						"7",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save vaccination",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \n    \"vaccinelocation_id\": \"1\",\n    \"vaccinedate_id\": \"2\"\n }"
+				},
+				"url": {
+					"raw": "https://oesterreichimpft.s1810456016.student.kwmhgb.at/api/vaccination",
+					"protocol": "https",
+					"host": [
+						"oesterreichimpft",
+						"s1810456016",
+						"student",
+						"kwmhgb",
+						"at"
+					],
+					"path": [
+						"api",
+						"vaccination"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save vaccinedate",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \n    \"day\": \"2021-05-29\",\n    \"starttime\": \"2021-05-29 09:00:40\",\n    \"endtime\": \"2021-05-29 18:00:40\",\n    \"maximum_attendees\": 15\n }"
+				},
+				"url": {
+					"raw": "https://oesterreichimpft.s1810456016.student.kwmhgb.at/api/vaccinedate",
+					"protocol": "https",
+					"host": [
+						"oesterreichimpft",
+						"s1810456016",
+						"student",
+						"kwmhgb",
+						"at"
+					],
+					"path": [
+						"api",
+						"vaccinedate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save vaccinelocation",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \n    \"zip\": \"4193\",\n    \"city\": \"Reichenthal\",\n    \"street\": \"Liebenthal 5\",\n    \"description\": \"Sportanlage Reichenthal\"\n }"
+				},
+				"url": {
+					"raw": "https://oesterreichimpft.s1810456016.student.kwmhgb.at/api/vaccinelocation",
+					"protocol": "https",
+					"host": [
+						"oesterreichimpft",
+						"s1810456016",
+						"student",
+						"kwmhgb",
+						"at"
+					],
+					"path": [
+						"api",
+						"vaccinelocation"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register vaccination",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \n    \"user_id\": \"2\",\n    \"vaccination_id\": \"2\",\n    \"vaccination_administered\": null\n }"
+				},
+				"url": {
+					"raw": "https://oesterreichimpft.s1810456016.student.kwmhgb.at/api/vaccinationUser",
+					"protocol": "https",
+					"host": [
+						"oesterreichimpft",
+						"s1810456016",
+						"student",
+						"kwmhgb",
+						"at"
+					],
+					"path": [
+						"api",
+						"vaccinationUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update vaccinedate",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \n    \"day\": \"2021-03-27\",\n    \"starttime\": \"2021-03-27 09:00:40\",\n    \"endtime\": \"2021-03-27 09:00:40\",\n    \"maximum_attendees\": 15,\n    \"user_id\": 1\n }"
+				},
+				"url": {
+					"raw": "https://oesterreichimpft.s1810456016.student.kwmhgb.at/api/vaccinedate/5",
+					"protocol": "https",
+					"host": [
+						"oesterreichimpft",
+						"s1810456016",
+						"student",
+						"kwmhgb",
+						"at"
+					],
+					"path": [
+						"api",
+						"vaccinedate",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update vaccination",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \n    \"vaccinelocation_id\": \"1\",\n    \"vaccinedate_id\": \"6\"\n }"
+				},
+				"url": {
+					"raw": "https://oesterreichimpft.s1810456016.student.kwmhgb.at/api/vaccination/5",
+					"protocol": "https",
+					"host": [
+						"oesterreichimpft",
+						"s1810456016",
+						"student",
+						"kwmhgb",
+						"at"
+					],
+					"path": [
+						"api",
+						"vaccination",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update vaccinelocation",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \n    \"zip\": \"4193\",\n    \"city\": \"Reichenthal\",\n    \"street\": \"Liebenthal 5\",\n    \"description\": \"Sportanlage Reichenthal Eingang rechts\"\n }"
+				},
+				"url": {
+					"raw": "https://oesterreichimpft.s1810456016.student.kwmhgb.at/api/vaccinelocation/4",
+					"protocol": "https",
+					"host": [
+						"oesterreichimpft",
+						"s1810456016",
+						"student",
+						"kwmhgb",
+						"at"
+					],
+					"path": [
+						"api",
+						"vaccinelocation",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update vaccination administered",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 2,\n    \"firstname\": \"Sepp\",\n    \"lastname\": \"Koll\",\n    \"gender\": \"männlich\",\n    \"svnr\": \"4445351\",\n    \"email\": \"sepp@gmail.com\",\n    \"email_verified_at\": null,\n    \"telenumber\": null,\n    \"is_admin\": 0,\n    \"created_at\": \"2021-05-15T21:37:08.000000Z\",\n    \"updated_at\": \"2021-05-15T21:37:08.000000Z\",\n    \"pivot\": {\n        \"vaccination_administered\": 1,\n        \"vaccination_id\": 5,\n        \"user_id\": 2,\n        \"created_at\": \"2021-05-22T20:21:52.000000Z\",\n        \"updated_at\": \"2021-05-22T20:21:52.000000Z\"\n    }\n}"
+				},
+				"url": {
+					"raw": "https://oesterreichimpft.s1810456016.student.kwmhgb.at/api/vaccineuser/1",
+					"protocol": "https",
+					"host": [
+						"oesterreichimpft",
+						"s1810456016",
+						"student",
+						"kwmhgb",
+						"at"
+					],
+					"path": [
+						"api",
+						"vaccineuser",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete vaccinedate",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \n    \"day\": \"2021-03-27\",\n    \"starttime\": \"11:22:13\",\n    \"endtime\": \"14:55:36\",\n    \"maximum_attendees\": 10,\n    \"user_id\": 1\n }"
+				},
+				"url": {
+					"raw": "https://oesterreichimpft.s1810456016.student.kwmhgb.at/api/vaccinedate/3",
+					"protocol": "https",
+					"host": [
+						"oesterreichimpft",
+						"s1810456016",
+						"student",
+						"kwmhgb",
+						"at"
+					],
+					"path": [
+						"api",
+						"vaccinedate",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete vaccination",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \n    \"vaccinelocation_id\": \"3\",\n    \"vaccinedate_id\": \"7\"\n }"
+				},
+				"url": {
+					"raw": "https://oesterreichimpft.s1810456016.student.kwmhgb.at/api/vaccination/7",
+					"protocol": "https",
+					"host": [
+						"oesterreichimpft",
+						"s1810456016",
+						"student",
+						"kwmhgb",
+						"at"
+					],
+					"path": [
+						"api",
+						"vaccination",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete vaccinelocation",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \n    \"zip\": \"4193\",\n    \"city\": \"Reichenthal\",\n    \"street\": \"Liebenthal 5\",\n    \"description\": \"Sportanlage Reichenthal Eingang rechts\"\n }"
+				},
+				"url": {
+					"raw": "https://oesterreichimpft.s1810456016.student.kwmhgb.at/api/vaccinelocation/5",
+					"protocol": "https",
+					"host": [
+						"oesterreichimpft",
+						"s1810456016",
+						"student",
+						"kwmhgb",
+						"at"
+					],
+					"path": [
+						"api",
+						"vaccinelocation",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\" : \"askoll097@gmail.com\",\n    \"password\" : \"secret\"\n}"
+				},
+				"url": {
+					"raw": "https://oesterreichimpft.s1810456016.student.kwmhgb.at/api/auth/login",
+					"protocol": "https",
+					"host": [
+						"oesterreichimpft",
+						"s1810456016",
+						"student",
+						"kwmhgb",
+						"at"
+					],
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://oesterreichimpft.s1810456016.student.kwmhgb.at/api/auth/logout",
+					"protocol": "https",
+					"host": [
+						"oesterreichimpft",
+						"s1810456016",
+						"student",
+						"kwmhgb",
+						"at"
+					],
+					"path": [
+						"api",
+						"auth",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2VzdGVycmVpY2hpbXBmdC5zMTgxMDQ1NjAxNi5zdHVkZW50Lmt3bWhnYi5hdFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTYyMTk0NzE2MCwiZXhwIjoxNjIxOTUwNzYwLCJuYmYiOjE2MjE5NDcxNjAsImp0aSI6ImZyZTFRNWNsS1VEdk1GREMiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjciLCJ1c2VyIjp7ImlkIjoxLCJpc19hZG1pbiI6MX19.4a9VDJ3umjbXKwu3hbzZeXo1z3JRlU-rn6H4-OXbyb0",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
