@@ -1,0 +1,43 @@
+<div class="ui container">
+    <h1>Termin Formular</h1>
+    <form class="ui large form" [formGroup]="vaccinedateForm" (ngSubmit)="submitForm()">
+
+        <input type="hidden" name="id">
+        <div class="field">
+            <label>Termin-Datum</label>
+            <input formControlName="day" type="date"  id="day" />
+            <div *ngIf="errors.day" class="ui pointing red basic label">{{ errors.day }}</div>
+        </div>
+
+        <div class="field">
+            <label>Startzeit</label>
+            <input type="time" formControlName="starttime" name="starttime"> 
+            <div *ngIf="errors.starttime" class="ui pointing red basic label">{{ errors.starttime }}</div>
+        </div>
+
+        <div class="field">
+            <label>Endzeit</label>
+            <input type="time" formControlName="endtime" name="endtime">
+            <div *ngIf="errors.endtime" class="ui pointing red basic label">{{ errors.endtime }}</div>
+        </div>
+
+        <div class="field">
+            <label>Maximale Teilnehmeranzahl</label>
+            <input type="number" formControlName="maximum_attendees">
+            <div *ngIf="errors.maximum_attendees" class="ui pointing red basic label">{{ errors.maximum_attendees }}
+            </div>
+        </div>
+
+        <div class="field">
+            <label>Impfort</label>
+            <select class="custom-select" [(ngModel)]="selectedLocation" formControlName="vaccinelocation">
+                <option *ngFor="let vaccinelocation of vaccinelocations" [ngValue]="vaccinelocation">
+                    {{ vaccinelocation.city }}
+                </option>
+            </select>
+        </div>
+
+
+        <button type="submit" class="ui button" [disabled]="vaccinedateForm.invalid">Speichern</button>
+    </form>
+</div>

@@ -1,0 +1,86 @@
+<div class="ui container" *ngIf="vaccinedate && vaccinelocation">
+    <h2 style="margin-top: 1em; margin-bottom: 1em;">Impfdetails</h2>
+    <div class="ui container">
+        <div *ngIf="userHasVaccination && authService.isLoggedIn() && authService.getInfoIfAdmin() == '0'"
+            class="ui positive message">
+            <div class="header">
+                Wichtige Information!
+            </div>
+            <p>Du bist bereits zu dieser Impfung angemeldet.</p>
+        </div>
+        <h4 class="ui header">
+            <i class="calendar alternate icon"></i>
+            <div class="content">
+                Impftag
+                <div class="sub header">{{ vaccinedate.day | date:'dd.MM.yyyy' }}</div>
+            </div>
+        </h4>
+        <h4 class="ui header">
+            <i class="clock icon"></i>
+            <div class="content">
+                Impfzeitraum
+                <div class="sub header">{{ vaccinedate.starttime | date:'HH:mm' }} - {{ vaccinedate.endtime |
+                    date:'HH:mm' }} Uhr</div>
+            </div>
+        </h4>
+        <h4 class="ui header">
+            <i class="map pin icon"></i>
+            <div class="content">
+                Impfort
+                <div class="sub header">{{ vaccinelocation.city }}, {{ vaccinelocation.description }}</div>
+            </div>
+        </h4>
+
+        <h4 *ngIf="authService.isLoggedIn() && authService.getInfoIfAdmin() == '1'" class="ui header">
+            <i class="user outline icon"></i>
+            <div class="content">
+                Maximale Teilnehmeranzahl
+                <div class="sub header">{{ vaccinedate.maximum_attendees }} Personen</div>
+                <div class="sub header" *ngIf="vaccineusers">{{ vaccineusers.length }}
+                    Person(en) sind bereits angemeldet</div>
+            </div>
+        </h4>
+
+        <div *ngIf="authService.isLoggedIn() && authService.getInfoIfAdmin() == '1'">
+            <h2>Angemeldete Personen</h2>
+            <div *ngFor="let vaccineuser of vaccineusers">
+                <h4 class="ui header">
+                    <i class="male icon"></i>
+                    <div class="content">
+                        Name
+                        <div class="sub header">{{ vaccineuser.firstname }} {{ vaccineuser.lastname }}</div>
+                        <div class="sub header">Impfung verabreicht?
+                            <input value="name" type="checkbox" [checked]="vaccineuser.pivot.vaccination_administered"
+                            (change)="checkValue(vaccineuser)" >
+                        </div>
+                    </div>
+                </h4>
+            </div>
+        </div>
+    </div>
+
+
+    <div style="margin-top: 2em;">
+        <button [routerLink]="'/vaccinedates'" class="ui basic button"><i class="icon list"></i>Zu der
+            Terminliste
+        </button>
+
+        <button *ngIf="authService.isLoggedIn() && authService.getInfoIfAdmin() == '0' || authService.isLoggedOut()"
+            class="ui basic button" (click)="registerVaccination()" [disabled]="checkAttendees() || userHasVaccination">
+            <i class="write icon"></i>Zum Termin anmelden
+        </button>
+
+        <button *ngIf="authService.isLoggedIn() && authService.getInfoIfAdmin() == '1'" class="ui red basic button"
+            (click)="removeVaccinedate()">
+            <i class="remove icon"></i>Termin löschen
+        </button>
+
+
+        <a *ngIf="authService.isLoggedIn() && authService.getInfoIfAdmin() == '1'" class="ui yellow basic button"
+            [routerLink]="['../../../admin', vaccinedate?.id, vaccinelocation?.id]">
+            <i class="write icon"></i>Termin bearbeiten
+        </a>
+
+    </div>
+
+</div>

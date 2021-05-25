@@ -1,0 +1,9 @@
+<!-- externes Template für Start-Komponente -->
+<div class="ui {{ isLoggedIn() && getInfoIfAdmin() == '1' ? 'four' : 'three' }} item secondary pointing menu">
+    <a routerLink="home" routerLinkActive="active" class="item">Home</a>
+    <a routerLink="vaccinedates" routerLinkActive="active" class="item">Liste der Impftermine</a>
+    <a *ngIf="isLoggedIn() && getInfoIfAdmin() == '1'" routerLink="admin" routerLinkActive="active" class="item">Adminbereich</a>
+
+    <a routerLink="login" routerLinkActive="active" class="item">{{ getLoginLabel() }}</a>
+</div>
+<router-outlet></router-outlet>
