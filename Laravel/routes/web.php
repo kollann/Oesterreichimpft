@@ -12,9 +12,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// not needed, controlled via Angular
-/*Route::get('/', [\App\Http\Controllers\VaccinationController::class, 'index']);
+Route::get('/', [\App\Http\Controllers\VaccinationController::class, 'index']);
 Route::get('/vaccinations', [\App\Http\Controllers\VaccinationController::class, 'index']);
-Route::get('/vaccinations/{vaccination}', [\App\Http\Controllers\VaccinationController::class, 'show']);*/
+Route::get('/vaccinations/{vaccination}', [\App\Http\Controllers\VaccinationController::class, 'show']);
 
 

@@ -13,26 +13,9 @@ use Illuminate\Support\Facades\DB;
 
 class VaccinationController extends Controller
 {
-    public function saveuser(Request $request){
-        DB::beginTransaction();
-        try {
-            $user = User::create($request->all());
-
-            // save user
-            $user = User::firstOrNew(['firstname' => $user['firstname'], 'lastname' => $user['lastname'],
-                            'gender' => $user['gender'], 'svnr' => $user['svnr'], 'email' => $user['email'], 'password' => $user['password'],
-                'is_admin' => $user['is_admin']]);
-            $user->save($user);
-
-            return $user;
-
-            /*DB::commit();
-            return response()->json($user, 201);*/
-        }
-        catch (\Exception $e) {
-            DB::rollBack();
-            return response()->json("saving user failed: " . $e->getMessage(), 420);
-        }
+    public function index(){
+        $vaccinations = Vaccination::with(['users', 'vaccinelocation', 'vaccinedate'])->get();
+        return $vaccinations;
     }
 
     public function findAllVaccinedates(){
@@ -42,11 +25,10 @@ class VaccinationController extends Controller
             ->where('day', '>=', Carbon::now())
             ->orderBy('day', 'asc')
             ->get();
-
         return $vaccinedates;
     }
 
-   public function findAllVaccinelocations(){
+    public function findAllVaccinelocations(){
         $vaccinelocations = Vaccinelocation::with(['vaccinations'])->get();
         return $vaccinelocations;
     }
@@ -58,7 +40,7 @@ class VaccinationController extends Controller
 
     public function findDateById(int $id) : Vaccinedate {
         $vaccinedate = Vaccinedate::where('id', $id)->with(['vaccinations'])->first();
-         return $vaccinedate;
+        return $vaccinedate;
     }
 
     public function findUsersByLocationAndDate(int $dateid, int $locid) {
@@ -116,6 +98,30 @@ class VaccinationController extends Controller
         catch (\Exception $e) {
             DB::rollBack();
             return response()->json("saving vaccination failed: " . $e->getMessage(), 420);
+        }
+    }
+
+    public function savelocation(Request $request) : JsonResponse {
+        DB::beginTransaction();
+        try {
+            $vaccinelocation = Vaccinelocation::create($request->all());
+
+            // save vaccinelocation
+            if(isset($request['vaccinelocations']) && is_array($request['vaccinelocations'])) {
+                foreach($request['vaccinelocations'] as $vlocation) {
+                    $vaccinelocation =
+                        Vaccinedate::firstOrNew(['zip' => $vlocation['zip'], 'city' => $vlocation['city'],
+                            'street' => $vlocation['street'], 'description' => $vlocation['description']]);
+                    $vaccinelocation->vaccinationdate()->save($vaccinelocation);
+                }
+            }
+
+            DB::commit();
+            return response()->json($vaccinelocation, 201);
+        }
+        catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json("saving vaccinelocation failed: " . $e->getMessage(), 420);
         }
     }
 
@@ -181,6 +187,26 @@ class VaccinationController extends Controller
         }
     }
 
+    public function updatelocation(Request $request, int $id) : JsonResponse {
+        DB::beginTransaction();
+        try {
+            $vaccinelocation = Vaccinelocation::where('id', $id)->first();
+            if($vaccinelocation != null) {
+                $vaccinelocation->update($request->all());
+
+                $vaccinelocation->save();
+            }
+
+            DB::commit();
+            $vaccinelocation1 = Vaccinelocation::where('id', $id)->first();
+            return response()->json($vaccinelocation1, 201);
+        }
+        catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json("updating vaccinelocation failed: " . $e->getMessage(), 420);
+        }
+    }
+
     public function updateVaccinationAdministered(Request $request)  {
         DB::beginTransaction();
         try {
@@ -209,13 +235,13 @@ class VaccinationController extends Controller
 
 
     public function deletedate(int $id) : JsonResponse {
-       $vaccinedate = Vaccinedate::where('id', $id)->first();
-       if($vaccinedate != null){
-           $vaccinedate->delete();
-       }
-       else {
-           throw new \Exception("vaccinedate does not exist");
-       }
+        $vaccinedate = Vaccinedate::where('id', $id)->first();
+        if($vaccinedate != null){
+            $vaccinedate->delete();
+        }
+        else {
+            throw new \Exception("vaccinedate does not exist");
+        }
         return response()->json('vaccinedate (' . $id .') successfully deleted', 200);
     }
 
@@ -230,7 +256,17 @@ class VaccinationController extends Controller
         return response()->json('vaccination (' . $id .') successfully deleted', 200);
     }
 
-    // ???
+    public function deletevaccinelocation(int $id) : JsonResponse {
+        $vaccinelocation = Vaccinelocation::where('id', $id)->first();
+        if($vaccinelocation != null){
+            $vaccinelocation->delete();
+        }
+        else {
+            throw new \Exception("vaccinelocation does not exist");
+        }
+        return response()->json('vaccinelocation (' . $id .') successfully deleted', 200);
+    }
+
     public function show($vaccination) {
         $vaccination = Vaccination::find($vaccination);
         return view('vaccinations.show', compact('vaccination'));

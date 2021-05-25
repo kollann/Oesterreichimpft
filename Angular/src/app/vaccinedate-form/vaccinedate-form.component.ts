@@ -43,7 +43,6 @@ export class VaccinedateFormComponent implements OnInit {
           this.initVaccinedate();
       });
       
-      this.isUpdatingVaccinedate = true;
       this.vc.getAllLocations().subscribe(locations => {
         this.vaccinelocations = locations;
         for(const loc of this.vaccinelocations){
@@ -67,9 +66,9 @@ export class VaccinedateFormComponent implements OnInit {
   initVaccinedate() {
     this.vaccinedateForm = this.fb.group({
       id: this.vaccinedate.id,
-      day: [this.vaccinedate.day.toISOString().substring(0, 10), Validators.required],
-      starttime: [this.vaccinedate.starttime.toISOString().substring(11,16), Validators.required],
-      endtime: [this.vaccinedate.endtime.toISOString().substring(11,16), Validators.required],
+      day: [this.vaccinedate.day?.toISOString()?.substring(0, 10), Validators.required],
+      starttime: [this.vaccinedate?.starttime?.toISOString().substring(11,16), Validators.required],
+      endtime: [this.vaccinedate.endtime?.toISOString()?.substring(11,16), Validators.required],
       maximum_attendees: [this.vaccinedate.maximum_attendees, [Validators.required, Validators.min(1), Validators.max(200)]],
       vaccinelocation: this.selectedVaccinelocation 
     });

@@ -3,7 +3,7 @@ import { Vaccinedate } from './vaccinedate';
 
 export class VaccinedateFactory {
     static empty(): Vaccinedate {
-        return new Vaccinedate(null, new Date(), new Date(), new Date(), null, []);
+        return new Vaccinedate(null, null, null, null, null, []);
     }
 
     static fromObject(rawVaccinedate: any) : Vaccinedate {

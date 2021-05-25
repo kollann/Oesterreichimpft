@@ -39,23 +39,26 @@ Route::group(['middleware' => ['api', 'auth.jwt']], function(){
     // get user by date and location
     Route::get('vaccineuser/{dateid}/{locid}', [\App\Http\Controllers\VaccinationController::class, 'findUsersByLocationAndDate']);
 
-    // save vaccination uses VERB post
+    // save vaccination, vaccinedate and vaccinelocation uses VERB post
     Route::post('vaccinedate', [\App\Http\Controllers\VaccinationController::class, 'savedate']);
     Route::post('vaccination', [\App\Http\Controllers\VaccinationController::class, 'savevaccination']);
+    Route::post('vaccinelocation', [\App\Http\Controllers\VaccinationController::class, 'savelocation']);
 
     // register user for specific vaccination
     Route::post('vaccinationUser', [\App\Http\Controllers\VaccinationController::class, 'registerToVaccination']);
 
-    // update vaccination uses VERB put
+    // update vaccination, vaccinedate and vaccinelocation uses VERB put
     Route::put('vaccinedate/{id}', [\App\Http\Controllers\VaccinationController::class,'updatedate']);
     Route::put('vaccination/{id}', [\App\Http\Controllers\VaccinationController::class,'updatevaccination']);
+    Route::put('vaccinelocation/{id}', [\App\Http\Controllers\VaccinationController::class,'updatelocation']);
 
     // set vaccination administered
     Route::put('vaccineuser/{id}', [\App\Http\Controllers\VaccinationController::class,'updateVaccinationAdministered']);
 
-    // delete vaccination uses VERB delete
+    // delete vaccination, vaccinedate and vaccinelocation uses VERB delete
     Route::delete('vaccinedate/{id}', [\App\Http\Controllers\VaccinationController::class,'deletedate']);
     Route::delete('vaccination/{id}', [\App\Http\Controllers\VaccinationController::class,'deletevaccination']);
+    Route::delete('vaccinelocation/{id}', [\App\Http\Controllers\VaccinationController::class,'deletevaccinelocation']);
 
     Route::post('auth/logout',[\App\Http\Controllers\AuthController::class, 'logout']);
 });

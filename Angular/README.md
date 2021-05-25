@@ -1,5 +1,3 @@
-
-
 # Docker Setup 
 * run ```docker-compose run --service-ports angular```
 * run ```npm install```
